@@ -1,0 +1,27 @@
+{
+    "version": "1.5.0",
+    "description": "Semantic version for git",
+    "homepage": "https://github.com/bvieira/sv4git",
+    "license": "MIT",
+    "architecture": {
+        "64bit": {
+            "url": "https://github.com/bvieira/sv4git/releases/download/1.5.0/git-sv_1.5.0_windows_amd64.zip",
+            "hash": "80d91960eafd81ff32d6fa32edf7d7a1c52a9395c6570834b42aa3ba92d3a2ac"
+        }
+    },
+    "bin": "git-sv",
+    "post_install": [
+        "# Add .exe extension",
+        "Rename-Item $original_dir\\$($manifest.bin) $original_dir\\$($manifest.bin).exe",
+        "$manifest.bin+=\".exe\"",
+        "create_shims $manifest $dir $global $architecture"
+    ],
+    "checkver": "github",
+    "autoupdate": {
+        "architecture": {
+            "64bit": {
+                "url": "https://github.com/bvieira/sv4git/releases/download/$version/git-sv_$version_windows_amd64.zip"
+            }
+        }
+    }
+}
