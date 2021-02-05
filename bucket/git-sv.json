@@ -9,12 +9,9 @@
             "hash": "80d91960eafd81ff32d6fa32edf7d7a1c52a9395c6570834b42aa3ba92d3a2ac"
         }
     },
-    "bin": "git-sv",
-    "post_install": [
-        "# Add .exe extension",
-        "Rename-Item $original_dir\\$($manifest.bin) $original_dir\\$($manifest.bin).exe",
-        "$manifest.bin+=\".exe\"",
-        "create_shims $manifest $dir $global $architecture"
+    "bin": "git-sv.exe",
+    "pre_install": [
+        "Rename-Item $original_dir\\git-sv $original_dir\\git-sv.exe"
     ],
     "checkver": "github",
     "autoupdate": {
