@@ -1,12 +1,12 @@
 {
-    "version": "2.0.0",
+    "version": "2.1.0",
     "description": "Semantic version for git",
     "homepage": "https://github.com/bvieira/sv4git",
     "license": "MIT",
     "architecture": {
         "64bit": {
-            "url": "https://github.com/bvieira/sv4git/releases/download/2.0.0/git-sv_2.0.0_windows_amd64.zip",
-            "hash": "15d270bd470d5f2e82a890cfa22a19375904af5241d8c1042895a46282a4523a"
+            "url": "https://github.com/bvieira/sv4git/releases/download/2.1.0/git-sv_2.1.0_windows_amd64.zip",
+            "hash": "2e17ef9aa4f8f8203072be68fb6cdaaa23f9489d7452c2a36498876bdeebb2e8"
         }
     },
     "bin": "git-sv.exe",
