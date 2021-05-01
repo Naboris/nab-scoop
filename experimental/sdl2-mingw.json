@@ -1,0 +1,87 @@
+{
+    "version": "2.0.14",
+    "description": "Simple DirectMedia Layer is a cross-platform development library designed to provide low level access to audio, keyboard, mouse, joystick, and graphics hardware via OpenGL and Direct3D.",
+    "homepage": "https://www.libsdl.org",
+    "license": "Zlib",
+    "url": "https://www.libsdl.org/release/SDL2-devel-2.0.14-mingw.tar.gz",
+    "hash": "405eaff3eb18f2e08fe669ef9e63bc9a8710b7d343756f238619761e9b60407d",
+    "extract_dir": "SDL2-2.0.14",
+    "architecture": {
+        "64bit": {
+            "installer": {
+                "script": [
+                    "# edit file",
+                    "$pc=\"$dir/x86_64-w64-mingw32/lib/pkgconfig/sdl2.pc\"",
+                    "Set-Content $pc ((Get-Content $pc -Raw) `",
+                    " -replace \"/opt/local\",\"$dir\" `",
+                    " -replace \"/SDL2\",\"\" `",
+                    " -replace \"\\\\\",\"/\" `",
+                    ")",
+                    "$pkgdir=\"$(fullpath $dir)\\x86_64-w64-mingw32\\lib\\pkgconfig\"",
+                    "# future sessions",
+                    "$null, $currpath = strip_path (env 'PKG_CONFIG_PATH' $global) $pkgdir",
+                    "env 'PKG_CONFIG_PATH' $global \"$pkgdir;$currpath\"",
+                    "# this session",
+                    "$null, $env:PKG_CONFIG_PATH = strip_path $env:PKG_CONFIG_PATH $pkgdir",
+                    "$env:PKG_CONFIG_PATH = \"$dir;$env:PKG_CONFIG_PATH\""
+                ]
+            },
+            "uninstaller": {
+                "script": [
+                    "$pkgdir=\"$(fullpath $dir)\\x86_64-w64-mingw32\\lib\\pkgconfig\"",
+                    "# future sessions",
+                    "$was_in_path, $newpath = strip_path (env 'PKG_CONFIG_PATH' $global) $pkgdir",
+                    "if($was_in_path) {",
+                    " Write-Output \"Removing $(friendly_path $pkgdir) from your path.\"",
+                    " env 'PKG_CONFIG_PATH' $global $newpath",
+                    "}",
+                    "# current session",
+                    "$was_in_path, $newpath = strip_path $env:PKG_CONFIG_PATH $pkgdir",
+                    "if($was_in_path) { $env:PKG_CONFIG_PATH = $newpath }"
+                ]
+            }
+        },
+        "32bit": {
+            "installer": {
+                "script": [
+                    "# edit file",
+                    "$pc=\"$dir/i686-w64-mingw32/lib/pkgconfig/sdl2.pc\"",
+                    "Set-Content $pc ((Get-Content $pc -Raw) `",
+                    " -replace \"/opt/local\",\"$dir\" `",
+                    " -replace \"/SDL2\",\"\" `",
+                    " -replace \"\\\\\",\"/\" `",
+                    ")",
+                    "$pkgdir = $(fullpath $dir)\\i686-w64-mingw32\\lib\\pkgconfig",
+                    "# future sessions",
+                    "$null, $currpath = strip_path (env 'PKG_CONFIG_PATH' $global) $pkgdir",
+                    "env 'PKG_CONFIG_PATH' $global \"$pkgdir;$currpath\"",
+                    "# this session",
+                    "$null, $env:PKG_CONFIG_PATH = strip_path $env:PKG_CONFIG_PATH $pkgdir",
+                    "$env:PKG_CONFIG_PATH = \"$dir;$env:PKG_CONFIG_PATH\""
+                ]
+            },
+            "uninstaller": {
+                "script": [
+                    "$pkgdir=\"$(fullpath $dir)\\i686-w64-mingw32\\lib\\pkgconfig\"",
+                    "# future sessions",
+                    "$was_in_path, $newpath = strip_path (env 'PKG_CONFIG_PATH' $global) $pkgdir",
+                    "if($was_in_path) {",
+                    " Write-Output \"Removing $(friendly_path $pkgdir) from your path.\"",
+                    " env 'PKG_CONFIG_PATH' $global $newpath",
+                    "}",
+                    "# current session",
+                    "$was_in_path, $newpath = strip_path $env:PKG_CONFIG_PATH $pkgdir",
+                    "if($was_in_path) { $env:PKG_CONFIG_PATH = $newpath }"
+                ]
+            }
+        }
+    },
+    "checkver": {
+        "url": "https://www.libsdl.org/download-2.0.php",
+        "regex": "SDL version ([\\d.]+)"
+    },
+    "autoupdate": {
+        "url": "https://www.libsdl.org/release/SDL2-devel-$version-mingw.tar.gz",
+        "extract_dir": "SDL2-$version"
+    }
+}
