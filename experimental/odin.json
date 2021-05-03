@@ -6,7 +6,7 @@
     "architecture": {
         "64bit": {
             "url": "https://github.com/odin-lang/Odin/releases/download/dev-2021-05/odin-windows-amd64-dev-2021-05.zip",
-            "hash":"0937379c77904af5180f841dcd29030017480740920ae59b50a67c3a922a2116"
+            "hash": "0937379c77904af5180f841dcd29030017480740920ae59b50a67c3a922a2116"
         }
     },
     "extract_dir": "windows_artifacts",
