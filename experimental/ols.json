@@ -1,0 +1,23 @@
+{
+    "version": "1.0.0",
+    "homepage": "https://github.com/DanielGavin/ols",
+    "description": "Language server for Odin",
+    "license": "MIT",
+    "architecture": {
+        "64bit": {
+            "url": "https://github.com/DanielGavin/ols/archive/refs/heads/master.zip",
+            "hash": "cb2de7d27fddec530675c92241013213aaf767202e89e16e051b7bf21c1078d7"
+        }
+    },
+    "extract_dir": "ols-master",
+    "bin": "ols.exe",
+    "pre_install": [
+        "Write-Host \"Building executable. This can take a while.\"",
+        "$build=\"$dir\\build.bat\"",
+        "Set-Content $build ( `",
+        "(Get-Content $build -Raw) `",
+        " -replace \"ols\",\"ols.exe\" `",
+        ")",
+        "Start-Process -Wait -WindowStyle Hidden -WorkingDirectory $dir build.bat"
+    ]
+}
